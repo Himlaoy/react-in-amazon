@@ -4,6 +4,7 @@ import './Shop.css'
 
 const Shop = () => {
     const [products, setProducts] = useState([])
+    const [cart, setCart] = useState([])
 
    useEffect(()=>{
     fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
@@ -11,16 +12,21 @@ const Shop = () => {
     .then(data=>setProducts(data))
    },[])
 
+   const evenHandler=(product)=>{
+    const newCart = [...cart, product]
+    setCart(newCart)
+}
 
     return (
         <div className='shop-container'>
             <div className='product-container'>
                 {
-                    products.map(product=> <Product product={product}></Product>)
+                    products.map(product=> <Product product={product} key= {product.id} handleAddToCart={evenHandler}></Product>)
                 }
             </div>
             <div className='cart-container'>
-                <h2>Order is here</h2>
+                <h4>Order cart</h4>
+                <p>Product: {cart.length}</p>
             </div>
         </div>
 
