@@ -16,8 +16,17 @@ const Shop = () => {
 
    useEffect(()=>{
     const getCartData = getShoppingCart()
-    console.log(getCartData)
-   },[])
+        let saveCart = []
+        for(const id in getCartData){
+            const addProduct = products.find(product=> product.id === id)
+           if(addProduct){
+            const quantity = getCartData[id]
+            addProduct.quantity = quantity
+            saveCart.push(addProduct)
+           }
+        }
+        setCart(saveCart)
+   },[products])
 
    const evenHandler=(product)=>{
     const newCart = [...cart, product]
