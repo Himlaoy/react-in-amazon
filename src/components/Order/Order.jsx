@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Cart from '../Cart/Cart';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import './Order.css'
-import { removeFromDb } from '../../utilities/fakedb';
+import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 
 const Order = () => {
     const saveCard = useLoaderData()
@@ -13,6 +13,10 @@ const Order = () => {
        setCard(remaining)
        removeFromDb(id)
     }
+    const allDelete=()=>{
+        setCard([])
+        deleteShoppingCart()
+    }
     return (
         <div className='shop-container'>
             <div className='PPcart'>
@@ -21,7 +25,11 @@ const Order = () => {
                 }
             </div>
             <div className='cart-container'>
-                <Cart cart={card} ></Cart>
+                <Cart cart={card} allDelete={allDelete}>
+                    <Link to={'/order'}>
+                        <button className='btn-dlt-card'>Review Order</button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );

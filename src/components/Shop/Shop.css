@@ -6,8 +6,8 @@
 .product-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin: 50px;
+    gap: 30px;
+    margin: 30px;
 }
 
  /* .shop-containera{
@@ -15,5 +15,5 @@
 } */
 
 .cart-container{
-    width: 100px;
+    width: 160px;
 }
